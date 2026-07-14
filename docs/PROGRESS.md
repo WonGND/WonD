@@ -36,5 +36,9 @@
 
 ### STEP 4. 소재 수집 스크립트
 - **작업**: tools/fetch_stock.py, .env.example
-- **결과**: (진행 예정)
-- **다음 할 일**: Vrew 편집 → 첫 업로드 (토요일 대본/소재, 일요일 편집)
+- **결과**: 완료. Pexels API로 키워드 검색 → 세로형(portrait) 필터 → assets/weekXX/ 다운로드.
+  API 키는 .env(PEXELS_API_KEY)에서 로드, .env.example 제공. 사용법은 스크립트 상단
+  docstring에 포함. `python3 -m py_compile` 구문 검증 통과, --help 동작 확인.
+  API 키 발급은 pexels.com/api 안내만 함(실제 키 미포함).
+- **다음 할 일**: (사람 작업) 토요일 대본 검증·소재 수집 → 일요일 Vrew 편집 5편 → 평일 업로드.
+  다음 주 대본이 필요하면: "week02 대본 5편 생성하고 커밋해줘"
