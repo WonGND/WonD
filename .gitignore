@@ -1,0 +1,20 @@
+# 완성 영상 / 대용량 미디어
+output/
+assets/
+*.mp4
+*.mp3
+*.wav
+*.mov
+
+# 비밀 키
+.env
+
+# 파이썬
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# OS
+.DS_Store
+Thumbs.db
