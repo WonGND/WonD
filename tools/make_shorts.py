@@ -157,8 +157,9 @@ def main():
                 f":fontcolor=white:borderw=5:bordercolor=black"
                 f":x=(w-text_w)/2:y=h-460:line_spacing=18"
             )
+            # 이미지는 단일 프레임으로 입력 — zoompan의 d가 곧 출력 프레임 수
             run([
-                "ffmpeg", "-y", "-loop", "1", "-t", f"{d:.3f}", "-i", str(card),
+                "ffmpeg", "-y", "-i", str(card),
                 "-i", str(wav), "-vf", vf,
                 "-af", "apad", "-shortest",
                 "-c:v", "libx264", "-preset", "fast", "-pix_fmt", "yuv420p",
