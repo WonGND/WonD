@@ -24,7 +24,7 @@
 
 | 자산 | 위치 | 상태 |
 |------|------|------|
-| 전자책 PDF (16p) | `product/ebook/하루1시간_쇼츠공장.pdf` | ✅ 판매 가능 완성본 |
+| 전자책 PDF (20p) | `product/ebook/하루1시간_쇼츠공장.pdf` | ✅ 판매 가능 완성본 |
 | 전자책 판매 페이지 문구 | `sales/ebook_listing.md` | ✅ 복붙용 |
 | 서비스 판매 페이지 문구 | `sales/service_listing.md` | ✅ 복붙용 |
 | 홍보·DM 문구 6종 | `sales/outreach_templates.md` | ✅ 복붙용 |

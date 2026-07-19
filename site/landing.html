@@ -15,16 +15,9 @@
   }
   @media (prefers-color-scheme: dark) {
     :root {
-      --bg: #0d1118;
-      --surface: #151b26;
-      --ink: #e8ecf3;
-      --muted: #97a1b1;
-      --line: #262e3c;
-      --accent: #6b95e8;
-      --accent-ink: #0d1118;
-      --dark-panel: #1a2231;
-      --dark-panel-ink: #eef1f6;
-      --dark-panel-muted: #97a1b1;
+      --bg: #0d1118; --surface: #151b26; --ink: #e8ecf3; --muted: #97a1b1;
+      --line: #262e3c; --accent: #6b95e8; --accent-ink: #0d1118;
+      --dark-panel: #1a2231; --dark-panel-ink: #eef1f6; --dark-panel-muted: #97a1b1;
     }
   }
   :root[data-theme="light"] {
@@ -48,6 +41,7 @@
   section { padding: 44px 0; border-bottom: 1px solid var(--line); }
   h1, h2, h3 { line-height: 1.35; text-wrap: balance; letter-spacing: -0.02em; }
   h2 { font-size: 1.45rem; margin: 0 0 16px; }
+  h3 { font-size: 1.1rem; margin: 24px 0 8px; }
   p { margin: 10px 0; }
   .muted { color: var(--muted); }
   .eyebrow {
@@ -55,7 +49,7 @@
     font-weight: 700; margin-bottom: 14px;
   }
 
-  /* 히어로 — 전자책 표지와 같은 네이비 판 */
+  /* 히어로 */
   .hero {
     background: var(--dark-panel); color: var(--dark-panel-ink);
     margin: 24px -20px 0; padding: 64px 28px 56px; border-radius: 6px;
@@ -67,12 +61,17 @@
   .hero .honest {
     margin: 30px auto 0; max-width: 30em; padding: 14px 18px;
     border: 1px solid #33405a; border-radius: 4px;
-    font-size: 0.92rem; color: var(--dark-panel-muted);
+    font-size: 0.92rem; color: var(--dark-panel-muted); text-align: left;
   }
   .hero .honest strong { color: var(--dark-panel-ink); }
+  .hero .jump {
+    display: inline-block; margin-top: 28px; padding: 13px 30px;
+    background: #3b6fd4; color: #fff; border-radius: 4px;
+    font-weight: 700; text-decoration: none;
+  }
 
   /* 공정표 */
-  .steps { display: flex; flex-direction: column; gap: 0; counter-reset: step; margin-top: 8px; }
+  .steps { display: flex; flex-direction: column; margin-top: 8px; }
   .step {
     display: flex; gap: 16px; align-items: baseline;
     padding: 10px 0; border-bottom: 1px dashed var(--line);
@@ -80,11 +79,26 @@
   .step:last-child { border-bottom: none; }
   .step .t { font-variant-numeric: tabular-nums; color: var(--accent); font-weight: 700; min-width: 3.4em; font-size: 0.9rem; }
 
-  /* 상품 카드 */
-  .products { display: flex; flex-direction: column; gap: 20px; }
+  /* 미리보기 인라인 */
+  .preview-box {
+    background: var(--surface); border: 1px solid var(--line); border-radius: 6px;
+    padding: 22px 24px; margin-top: 14px;
+  }
+  .preview-box .from { font-size: 0.78rem; letter-spacing: 0.14em; color: var(--muted); margin-bottom: 10px; }
+  .preview-box blockquote { margin: 12px 0; padding: 10px 16px; border-left: 3px solid var(--accent); }
+  .preview-box blockquote p { margin: 0; }
+
+  /* 구성물 */
+  .includes { list-style: none; padding: 0; margin: 14px 0; }
+  .includes li { padding: 9px 0 9px 30px; border-bottom: 1px dashed var(--line); position: relative; }
+  .includes li::before { content: "✓"; position: absolute; left: 4px; color: var(--accent); font-weight: 700; }
+  .includes li:last-child { border-bottom: none; }
+  .includes .why { display: block; font-size: 0.88rem; color: var(--muted); }
+
+  /* 구매 카드/절차 */
   .card {
     background: var(--surface); border: 1px solid var(--line); border-radius: 6px;
-    padding: 26px 24px;
+    padding: 26px 24px; margin-top: 20px;
   }
   .card.featured { border-color: var(--accent); border-width: 2px; }
   .card .tag {
@@ -96,10 +110,21 @@
   .price .now { font-size: 1.7rem; font-weight: 800; font-variant-numeric: tabular-nums; }
   .price .was { color: var(--muted); text-decoration: line-through; margin-left: 8px; font-variant-numeric: tabular-nums; }
   .price-note { font-size: 0.85rem; color: var(--muted); margin-bottom: 14px; }
-  .card ul { margin: 12px 0; padding-left: 20px; }
-  .card li { margin: 5px 0; }
+  .buy-steps { counter-reset: buystep; margin: 18px 0 0; padding: 0; list-style: none; }
+  .buy-steps li {
+    counter-increment: buystep; position: relative;
+    padding: 12px 0 12px 44px; border-top: 1px dashed var(--line);
+  }
+  .buy-steps li::before {
+    content: counter(buystep); position: absolute; left: 0; top: 12px;
+    width: 28px; height: 28px; border-radius: 50%;
+    background: var(--accent); color: var(--accent-ink);
+    font-weight: 700; font-size: 0.9rem;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .buy-steps .hint { display: block; font-size: 0.85rem; color: var(--muted); }
   .btn {
-    display: block; width: 100%; text-align: center; margin-top: 18px;
+    display: block; width: 100%; text-align: center; margin-top: 14px;
     background: var(--accent); color: var(--accent-ink);
     border: none; border-radius: 4px; padding: 14px 20px;
     font-size: 1rem; font-weight: 700; font-family: inherit; cursor: pointer;
@@ -107,18 +132,17 @@
   }
   .btn.secondary { background: transparent; color: var(--accent); border: 1.5px solid var(--accent); }
   .btn:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+  .btn-row { display: flex; gap: 10px; flex-wrap: wrap; }
+  .btn-row .btn { flex: 1 1 200px; }
 
-  /* 목차/FAQ */
-  ol.toc { padding-left: 22px; }
-  ol.toc li { margin: 6px 0; }
+  ol.toc { padding-left: 22px; column-count: 1; }
+  ol.toc li { margin: 5px 0; }
   details { border-bottom: 1px solid var(--line); padding: 12px 0; }
   details summary { font-weight: 700; cursor: pointer; }
   details p { color: var(--muted); }
 
   footer { padding: 36px 0; font-size: 0.85rem; color: var(--muted); }
-  @media (prefers-reduced-motion: no-preference) {
-    .card { transition: border-color 0.15s ease; }
-  }
+  footer a { color: var(--accent); }
 </style>
 
 <main>
@@ -127,10 +151,11 @@
     <h1>하루 1시간<br>쇼츠 공장</h1>
     <p class="sub">얼굴도, 목소리도, 편집 경험도 없이<br>주 6시간으로 매주 5편을 올리는 유튜브 쇼츠 시스템</p>
     <div class="honest">
-      먼저 밝힙니다. <strong>이 페이지에는 수익 보장이 없습니다.</strong><br>
+      먼저 밝힙니다. <strong>이 페이지에는 수익 보장이 없습니다.</strong>
       조회수와 수익은 누구도 보장할 수 없습니다. 여기서 파는 것은
-      "매주 5편을 지속 가능하게 만드는 공정"입니다.
+      "매주 5편을 지속 가능하게 만드는 공정"입니다. 그 공정이 궁금하시면 계속 읽어주세요.
     </div>
+    <a class="jump" href="#buy">구매하러 가기 ↓</a>
   </div>
 
   <section>
@@ -149,52 +174,96 @@
   </section>
 
   <section>
-    <h2>두 가지 방법으로 시작할 수 있습니다</h2>
-    <div class="products">
-
-      <div class="card">
-        <span class="tag">전자책 PDF · 16p</span>
-        <h3>하루 1시간 쇼츠 공장</h3>
-        <p class="muted">시스템 전체를 직접 따라 하는 실행 가이드. 프롬프트 전문, 편당 60분 공정표, 30일 캘린더, 업로드 체크리스트 포함.</p>
-        <div class="price"><span class="now">12,900원</span><span class="was">19,900원</span></div>
-        <div class="price-note">런칭 72시간 한정가 · 입금 확인 즉시 PDF 발송</div>
-        <a class="btn" data-link="ebook" href="#">전자책 구매하기</a>
-      </div>
-
-      <div class="card featured">
-        <span class="tag">1:1 세팅 서비스 · 7일 납품</span>
-        <h3>쇼츠 채널 풀 세팅 패키지</h3>
-        <p class="muted">"오늘 뭐 만들지" 고민이 없는 상태로 시작하게 해드립니다. 직접 안 만들고 세팅을 통째로 받는 방법.</p>
-        <ul>
-          <li>채널 컨셉 설계서 (채널명 후보 5개 포함)</li>
-          <li>첫 2주분 대본 10편 — 팩트 검증 메모 포함</li>
-          <li>제작 파이프라인 + 30일 실행 캘린더</li>
-          <li>AI 대본 생성 프롬프트 (이후 무한 생성)</li>
-          <li>1:1 온보딩 60분 — 첫 편을 같이 만듭니다</li>
-        </ul>
-        <div class="price"><span class="now">490,000원</span><span class="was">590,000원</span></div>
-        <div class="price-note">런칭 기념 선착순 2명 · 이후 정가</div>
-        <a class="btn" data-link="package" href="#">세팅 상담 신청</a>
-      </div>
-
+    <h2>사기 전에, 먼저 읽어보세요</h2>
+    <p class="muted">본문이 어떤 톤인지 파는 쪽 말만 듣고 판단하실 필요 없습니다. 1장에서 그대로 발췌했습니다.</p>
+    <div class="preview-box">
+      <div class="from">본문 1장에서 발췌</div>
+      <p><strong>그런데 왜 대부분 한 달 안에 그만둘까</strong></p>
+      <p>세 가지 이유입니다. ① 편당 제작 시간이 길다 — 첫 편에 5시간을 쓰면 열 편을 못 만듭니다. ② 뭘 만들지 매번 고민한다 — 소재 고민이 제작보다 오래 걸립니다. ③ 조회수를 목표로 삼는다 — 통제할 수 없는 숫자를 목표로 삼으면 3주 안에 무너집니다.</p>
+      <blockquote><p>한 편 한 편을 '작품'으로 만들면 지칩니다. 이 시스템은 채널을 <strong>공장</strong>으로 봅니다. 공정이 정해져 있고, 각 공정의 소요 시간이 정해져 있고, 매주 같은 요일에 같은 일을 합니다. 영감이 아니라 루틴이 채널을 굴립니다.</p></blockquote>
     </div>
+    <a class="btn secondary" data-link="sample" href="#">1장 전체를 무료 미리보기 PDF로 받기</a>
   </section>
 
   <section>
-    <h2>전자책 목차</h2>
-    <ol class="toc muted">
-      <li>왜 쇼츠인가, 그리고 왜 대부분 그만두는가</li>
-      <li>채널 컨셉 정하기 — '잡학 랭킹' 포맷</li>
-      <li>45초 대본 공식 — AI에게 시키는 법</li>
-      <li>Vrew 편집 20분 워크플로</li>
-      <li>이미지·BGM·저작권 — 채널 잘리지 않는 법</li>
-      <li>업로드 최적화 — 7항목 체크리스트</li>
-      <li>주 6시간 운영 시스템과 30일 캘린더</li>
-      <li>지표 읽는 법 — 무엇을 보고 무엇을 무시할까</li>
-      <li>수익화의 현실 — 솔직한 타임라인</li>
-      <li>부록: 프롬프트 전문 · 체크리스트 · 예시 대본 · 지표 양식</li>
-    </ol>
-    <a class="btn secondary" data-link="sample" href="#">무료 미리보기 받기 (1장 전체)</a>
+    <h2>전자책에 들어있는 것 (PDF 20페이지)</h2>
+    <ul class="includes">
+      <li>12개 장 — 컨셉 → 대본 → 편집 → 업로드 → 운영 → 수익화까지 전 과정
+        <span class="why">목차는 아래에서 전부 공개합니다</span></li>
+      <li>AI 대본 생성 프롬프트 전문
+        <span class="why">복사해서 [주제]만 바꾸면 바로 대본이 나옵니다</span></li>
+      <li>소재 아이디어 50선
+        <span class="why">주 5편 기준 첫 10주는 "뭘 올리지" 고민이 없습니다</span></li>
+      <li>후킹 패턴 12종 템플릿
+        <span class="why">첫 3초 문구를 빈칸 채우기로 만듭니다</span></li>
+      <li>팩트 검증 과정까지 보여주는 예시 대본 3편
+        <span class="why">"이렇게 쓰면 된다"를 완성본으로 확인</span></li>
+      <li>'재사용된 콘텐츠' 판정 피하기 (6장)
+        <span class="why">TTS 채널이 수익화 심사에서 떨어지는 1순위 이유 — 대부분의 강의가 말해주지 않는 부분</span></li>
+      <li>트러블슈팅 가이드 (10장)
+        <span class="why">TTS 어색함 · 자막 밀림 · 조회수 정체, 증상별 해결 순서</span></li>
+      <li>30일 실행 캘린더 + 업로드 전 7항목 체크리스트</li>
+    </ul>
+    <details>
+      <summary>전체 목차 펼쳐보기</summary>
+      <ol class="toc muted">
+        <li>왜 쇼츠인가, 그리고 왜 대부분 그만두는가</li>
+        <li>채널 컨셉 정하기 — '잡학 랭킹' 포맷 + 니치 변형 12선</li>
+        <li>45초 대본 공식 — AI에게 시키는 법 + 후킹 패턴 12</li>
+        <li>Vrew 편집 20분 워크플로</li>
+        <li>이미지·BGM·저작권 — 채널 잘리지 않는 법</li>
+        <li>'재사용된 콘텐츠' 판정 피하기 — 수익화 심사 최대 리스크</li>
+        <li>업로드 최적화 — 7항목 체크리스트</li>
+        <li>주 6시간 운영 시스템과 30일 캘린더</li>
+        <li>지표 읽는 법 — 무엇을 보고 무엇을 무시할까</li>
+        <li>막혔을 때 — 트러블슈팅 가이드</li>
+        <li>수익화의 현실 — 솔직한 타임라인</li>
+        <li>부록: 프롬프트 전문 / 체크리스트 / 예시 대본 3편 / 소재 50선 / 지표 양식</li>
+      </ol>
+    </details>
+  </section>
+
+  <section id="buy">
+    <h2>구매하기</h2>
+
+    <div class="card" id="ebook-card">
+      <span class="tag">전자책 PDF · 20p</span>
+      <h3>하루 1시간 쇼츠 공장</h3>
+      <div class="price"><span class="now">12,900원</span><span class="was">19,900원</span></div>
+      <div class="price-note">런칭 72시간 한정가</div>
+
+      <div id="direct-buy">
+        <ol class="buy-steps">
+          <li><strong>12,900원 송금</strong>
+            <span class="hint">아래 버튼을 누르면 송금 페이지가 열립니다</span></li>
+          <li><strong>주문서 작성 (30초)</strong>
+            <span class="hint">PDF 받으실 이메일과 입금자명만 적으면 됩니다</span></li>
+          <li><strong>24시간 이내 메일로 PDF 도착</strong>
+            <span class="hint">보통 몇 시간 안에 보내드립니다</span></li>
+        </ol>
+        <div class="btn-row">
+          <a class="btn" data-link="pay" href="#">① 12,900원 송금하기</a>
+          <a class="btn secondary" data-link="form" href="#">② 주문서 작성하기</a>
+        </div>
+      </div>
+      <a class="btn" id="kmong-ebook-btn" data-link="kmong_ebook" href="#" hidden>크몽에서 안전결제로 구매하기</a>
+    </div>
+
+    <div class="card featured">
+      <span class="tag">1:1 세팅 서비스 · 7일 납품</span>
+      <h3>쇼츠 채널 풀 세팅 패키지</h3>
+      <p class="muted">직접 안 만들고 세팅을 통째로 받는 방법. "오늘 뭐 만들지" 고민이 없는 상태로 시작하게 해드립니다.</p>
+      <ul>
+        <li>채널 컨셉 설계서 (채널명 후보 5개 포함)</li>
+        <li>첫 2주분 대본 10편 — 팩트 검증 메모 포함</li>
+        <li>제작 파이프라인 + 30일 실행 캘린더</li>
+        <li>AI 대본 생성 프롬프트 (이후 무한 생성)</li>
+        <li>1:1 온보딩 60분 — 첫 편을 같이 만듭니다</li>
+      </ul>
+      <div class="price"><span class="now">490,000원</span><span class="was">590,000원</span></div>
+      <div class="price-note">런칭 기념 선착순 2명 · 이후 정가 · 전자책 구매자는 12,900원 추가 할인</div>
+      <a class="btn" data-link="package" href="#">상담 신청하기 (구매 강요 없음)</a>
+    </div>
   </section>
 
   <section>
@@ -208,30 +277,49 @@
       <p>Vrew(무료)에 대본을 붙여넣는 수준입니다. 전자책 4장이 그 과정 전체를 다루고, 세팅 패키지는 온보딩에서 첫 편을 같이 만듭니다.</p>
     </details>
     <details>
+      <summary>TTS 채널은 수익화가 안 된다던데요?</summary>
+      <p>TTS 자체가 금지는 아닙니다. 문제는 '누가 만들어도 똑같은 영상'을 반복 생산하는 경우로, 유튜브의 '재사용된 콘텐츠' 정책에 걸립니다. 이게 이 포맷의 실제 최대 리스크라서 6장 전체를 여기에 씁니다 — 오리지널리티를 확보하는 5가지 원칙으로요.</p>
+    </details>
+    <details>
       <summary>얼마나 벌 수 있나요?</summary>
-      <p>보장할 수 없고, 보장하지 않습니다. 수익화 조건과 현실적인 타임라인은 전자책 9장에서 부풀림 없이 다룹니다. "한 달 만에 얼마"를 약속하는 곳은 피하세요.</p>
+      <p>보장할 수 없고, 보장하지 않습니다. 수익화 조건과 현실적인 타임라인은 11장에서 부풀림 없이 다룹니다. "한 달 만에 얼마"를 약속하는 곳은 피하세요.</p>
+    </details>
+    <details>
+      <summary>이 책대로 하면 다들 똑같은 채널이 되는 것 아닌가요?</summary>
+      <p>맞는 지적이라서 2장에 "이 책을 그대로 따라 하지 마세요"라는 섹션이 있습니다. 시스템은 같아도 소재는 달라야 해서, 니치 변형 12개와 고르는 기준을 함께 드립니다.</p>
     </details>
     <details>
       <summary>환불이 되나요?</summary>
-      <p>전자책은 디지털 상품 특성상 파일 발송 후 환불이 어렵습니다 — 그래서 1장 전체를 무료 미리보기로 먼저 드립니다. 세팅 패키지는 초안 전달 전 100% 환불됩니다.</p>
+      <p>전자책은 디지털 상품 특성상 파일 발송 후 환불이 어렵습니다 — 그래서 1장 전체를 무료 미리보기로 먼저 드립니다. 발송 전에는 100% 환불됩니다. 세팅 패키지는 초안 전달 전 100% 환불됩니다. 크몽 결제 시에는 크몽 환불 규정이 우선 적용됩니다.</p>
+    </details>
+    <details>
+      <summary>입금했는데 주문서를 깜빡했어요 / PDF가 안 와요.</summary>
+      <p>문의 채널(아래)로 입금자명을 알려주시면 확인 후 바로 보내드립니다.</p>
     </details>
   </section>
 
   <footer>
     본 페이지의 상품은 정보·서비스 제공 목적이며 특정 수익을 보장하지 않습니다.<br>
-    문의: <a href="#" data-link="contact" style="color: var(--accent);">카카오 오픈채팅</a>
+    디지털 콘텐츠의 무단 복제·재배포를 금합니다.<br>
+    문의: <a href="#" data-link="contact">카카오 오픈채팅</a>
   </footer>
 </main>
 
 <script>
-  // ── 여기 세 줄만 채우면 됩니다 ─────────────────────────────
+  // ── 여기만 채우면 됩니다 ──────────────────────────────────
   const LINKS = {
-    ebook:   "",  // 전자책 결제 링크 (크몽 상품 URL 또는 toss.me/아이디/12900)
-    package: "",  // 세팅 패키지 상담 링크 (크몽 URL 또는 오픈채팅 URL)
-    sample:  "",  // 무료 미리보기 (구글 드라이브 공유 링크 등)
+    pay:     "",  // 토스아이디 송금 링크 (toss.me/아이디/12900)
+    form:    "",  // 구글폼 주문서 URL
+    sample:  "",  // 무료 미리보기 PDF (구글 드라이브 '링크 공유' URL)
+    package: "",  // 세팅 패키지 상담 (오픈채팅 URL)
     contact: "",  // 문의 오픈채팅 URL
+    kmong_ebook: "",  // (선택) 크몽 전자책 상품 URL — 채우면 송금/주문서 대신 크몽 버튼 표시
   };
   // ──────────────────────────────────────────────────────────
+  if (LINKS.kmong_ebook) {
+    document.getElementById("direct-buy").hidden = true;
+    document.getElementById("kmong-ebook-btn").hidden = false;
+  }
   document.querySelectorAll("[data-link]").forEach((el) => {
     const url = LINKS[el.dataset.link];
     if (url) { el.href = url; el.target = "_blank"; el.rel = "noopener"; }
